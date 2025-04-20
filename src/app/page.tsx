@@ -60,9 +60,11 @@ export default function Home() {
 
       // Mark as successful
       setSuccess(true);
-    } catch (err: any) {
+    } catch (err) {
       console.error("Error processing image:", err);
-      setError(err.message || "An unexpected error occurred");
+      setError(
+        err instanceof Error ? err.message : "An unexpected error occurred"
+      );
     } finally {
       setLoading(false);
     }
