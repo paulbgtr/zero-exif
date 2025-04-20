@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Mono } from "next/font/google";
 import "./globals.css";
+import { Navbar } from "@/components/navbar";
 
 const spaceMono = Space_Mono({
   weight: ["400", "700"],
@@ -19,7 +20,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${spaceMono.className} antialiased`}>{children}</body>
+      <body className={`${spaceMono.className} antialiased`}>
+        <div className="flex flex-col min-h-screen">
+          <Navbar />
+          {children}
+        </div>
+      </body>
     </html>
   );
 }
