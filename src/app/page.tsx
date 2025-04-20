@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
+import { Loader2, Upload } from "lucide-react";
 
 export default function Home() {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
@@ -91,44 +92,39 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-4">
-      <div className="flex flex-col items-center max-w-md w-full p-6 rounded-lg shadow-lg">
-        <h1 className="text-2xl font-bold mb-6">Zero EXIF</h1>
-        <p className="mb-6 text-center">
-          Upload an image to remove all EXIF metadata. Processing happens
-          securely on our server.
+    <main className="flex flex-grow flex-col items-center justify-center p-4 bg-background">
+      <div className="flex flex-col items-center max-w-md w-full p-8 bg-card text-card-foreground rounded-xl shadow-xl border">
+        <p className="mb-8 text-center text-muted-foreground">
+          Upload an image to remove its EXIF metadata (like location, device
+          info, etc.).
         </p>
 
-        <form ref={formRef} onSubmit={handleSubmit} className="w-full">
-          <div className="w-full mb-6">
+        <form
+          ref={formRef}
+          onSubmit={handleSubmit}
+          className="w-full space-y-6"
+        >
+          <div className="w-full">
             <label
-              className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-lg cursor-pointer"
+              htmlFor="image-upload"
+              className="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-border hover:border-primary rounded-lg cursor-pointer bg-muted/30 hover:bg-muted/50 transition-colors duration-200 ease-in-out"
               onDrop={handleDrop}
               onDragOver={handleDragOver}
             >
-              <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                <svg
-                  className="w-8 h-8 mb-3"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 20 16"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-                  />
-                </svg>
-                <p className="mb-1 text-sm">
-                  <span className="font-semibold">Click to upload</span> or drag
-                  and drop
+              <div className="flex flex-col items-center justify-center pt-5 pb-6 text-center">
+                <Upload className="w-10 h-10 mb-4 text-muted-foreground" />
+                <p className="mb-2 text-sm text-muted-foreground">
+                  <span className="font-semibold text-primary">
+                    Click to upload
+                  </span>{" "}
+                  or drag and drop
                 </p>
-                <p className="text-xs">PNG or JPG (max 10MB)</p>
+                <p className="text-xs text-muted-foreground">
+                  PNG or JPG (max 10MB)
+                </p>
               </div>
               <input
+                id="image-upload"
                 ref={inputFileRef}
                 type="file"
                 name="image"
@@ -141,22 +137,40 @@ export default function Home() {
           </div>
 
           {selectedImage && (
-            <div className="w-full mb-6">
-              <p className="text-sm mb-2">Selected: {selectedImage.name}</p>
-              <Button type="submit" disabled={loading} className="w-full">
-                {loading ? "Processing..." : "Remove EXIF & Download"}
+            <div className="w-full space-y-3">
+              <p className="text-sm text-center text-muted-foreground">
+                Selected:{" "}
+                <span className="font-medium text-foreground">
+                  {selectedImage.name}
+                </span>
+              </p>
+              <Button
+                type="submit"
+                disabled={loading}
+                className="w-full transition-all duration-200 ease-in-out"
+              >
+                {loading ? (
+                  <div className="flex items-center justify-center">
+                    <Loader2 className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" />
+                    Processing...
+                  </div>
+                ) : (
+                  "Remove EXIF & Download"
+                )}
               </Button>
             </div>
           )}
 
           {error && (
-            <div className="w-full mb-4 p-3 rounded-md text-sm">{error}</div>
+            <div className="w-full mb-4 p-3 bg-destructive/10 border border-destructive/30 text-destructive rounded-md text-sm text-center">
+              Error: {error}
+            </div>
           )}
 
           {success && (
-            <div className="w-full mt-4 flex flex-col gap-3">
-              <div className="p-3 rounded-md text-sm">
-                EXIF data removed successfully! The download should begin
+            <div className="w-full mt-4 flex flex-col gap-3 items-center">
+              <div className="p-3 bg-muted border border-border rounded-md text-sm text-center w-full text-foreground">
+                ✅ Success! EXIF data removed. The download should begin
                 automatically.
               </div>
               <Button
