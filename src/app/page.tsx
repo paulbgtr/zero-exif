@@ -92,9 +92,9 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-4">
-      <div className="flex flex-col items-center max-w-md w-full p-6 bg-white rounded-lg shadow-lg">
+      <div className="flex flex-col items-center max-w-md w-full p-6 rounded-lg shadow-lg">
         <h1 className="text-2xl font-bold mb-6">Zero EXIF</h1>
-        <p className="mb-6 text-center text-gray-600">
+        <p className="mb-6 text-center">
           Upload an image to remove all EXIF metadata. Processing happens
           securely on our server.
         </p>
@@ -102,13 +102,13 @@ export default function Home() {
         <form ref={formRef} onSubmit={handleSubmit} className="w-full">
           <div className="w-full mb-6">
             <label
-              className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100"
+              className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-lg cursor-pointer"
               onDrop={handleDrop}
               onDragOver={handleDragOver}
             >
               <div className="flex flex-col items-center justify-center pt-5 pb-6">
                 <svg
-                  className="w-8 h-8 mb-3 text-gray-500"
+                  className="w-8 h-8 mb-3"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -122,11 +122,11 @@ export default function Home() {
                     d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
                   />
                 </svg>
-                <p className="mb-1 text-sm text-gray-500">
+                <p className="mb-1 text-sm">
                   <span className="font-semibold">Click to upload</span> or drag
                   and drop
                 </p>
-                <p className="text-xs text-gray-500">PNG or JPG (max 10MB)</p>
+                <p className="text-xs">PNG or JPG (max 10MB)</p>
               </div>
               <input
                 ref={inputFileRef}
@@ -150,14 +150,12 @@ export default function Home() {
           )}
 
           {error && (
-            <div className="w-full mb-4 p-3 bg-red-50 text-red-600 rounded-md text-sm">
-              {error}
-            </div>
+            <div className="w-full mb-4 p-3 rounded-md text-sm">{error}</div>
           )}
 
           {success && (
             <div className="w-full mt-4 flex flex-col gap-3">
-              <div className="p-3 bg-green-50 text-green-600 rounded-md text-sm">
+              <div className="p-3 rounded-md text-sm">
                 EXIF data removed successfully! The download should begin
                 automatically.
               </div>
