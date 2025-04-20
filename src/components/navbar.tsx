@@ -18,7 +18,7 @@ export function Navbar() {
             Why Remove EXIF?
           </Link>
           <Link
-            href="https://github.com/gibusoru/zero-exif"
+            href="https://github.com/paulbgtr/zero-exif"
             target="_blank"
             rel="noopener noreferrer"
           >
