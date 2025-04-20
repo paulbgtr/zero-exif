@@ -1,24 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Zero EXIF
+
+A simple web application to remove EXIF metadata from images.
+
+Built with [Next.js](https://nextjs.org/) and [Tailwind CSS](https://tailwindcss.com/).
+
+## Functionality
+
+- Upload PNG or JPEG images via drag-and-drop or file selection.
+- The application processes the image using the `/api/remove-exif` API route.
+- The processed image, stripped of EXIF data, is automatically downloaded by the user.
+
+## Prerequisites
+
+- Node.js (Version specified in `.nvmrc` or latest LTS recommended)
+- npm, yarn, pnpm, or bun
 
 ## Getting Started
 
-First, run the development server:
+1.  **Clone the repository:**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+    ```bash
+    git clone https://github.com/gibusoru/zero-exif.git # Replace with your repo URL if different
+    cd zero-exif
+    ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2.  **Install dependencies:**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+    ```bash
+    npm install
+    # or
+    yarn install
+    # or
+    pnpm install
+    # or
+    bun install
+    ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3.  **Run the development server:**
+    ```bash
+    npm run dev
+    # or
+    yarn dev
+    # or
+    pnpm dev
+    # or
+    bun dev
+    ```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Pages
+
+- `/`: Main application page for uploading images.
+- `/why`: Explanation of why removing EXIF data is important.
 
 ## Learn More
 
