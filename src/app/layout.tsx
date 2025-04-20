@@ -1,20 +1,15 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Space_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const spaceMono = Space_Mono({
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
   title: "Zero EXIF - Remove Metadata from Images",
-  description: "A simple utility to remove EXIF metadata from your images, right in your browser.",
+  description:
+    "A simple utility to remove EXIF metadata from your images, right in your browser.",
 };
 
 export default function RootLayout({
@@ -24,11 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
+      <body className={`${spaceMono.className} antialiased`}>{children}</body>
     </html>
   );
 }
