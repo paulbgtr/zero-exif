@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/navbar";
 
 const spaceMono = Space_Mono({
+  subsets: ["latin"],
   weight: ["400", "700"],
 });
 
